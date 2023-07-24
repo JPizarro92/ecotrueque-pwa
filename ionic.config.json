@@ -1,0 +1,7 @@
+{
+  "name": "ecotrueque",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
