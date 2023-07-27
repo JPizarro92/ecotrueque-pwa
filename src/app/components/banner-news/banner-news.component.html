@@ -1,0 +1,15 @@
+<div class="swiperHeaderMobile">
+  <swiper-container #swiperHeaderMobile
+                    [modules]="swiperModules"
+                    [slidesPerView]="1"
+                    [centeredSlides]="true"
+                    [autoplay]="true"
+                    [breakpoints]="breakpoints"
+                    space-between="20"
+                    [initialSlide]="1" 
+                    [pagination]="{clickable:true, dynamicBullets: true}">
+    <swiper-slide *ngFor="let image of images">
+      <img src="{{image.image}}">
+    </swiper-slide>
+  </swiper-container>
+</div>

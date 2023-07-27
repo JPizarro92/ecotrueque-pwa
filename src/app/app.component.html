@@ -1,3 +1,25 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+
+  <ion-split-pane contentId="menu-content">
+
+    <ion-menu *ngIf="showMenu" contentId="menu-content" menuId="menu-content" side="start" type="overlay">
+      <ion-list>
+        <ion-item lines="none">
+          <img src="assets/icon/ups/isotipo.png" class="isotipo" />
+        </ion-item>
+      </ion-list>
+
+      <ion-content>
+        <ion-menu-toggle class="menu-items" [autoHide]="false" *ngFor="let page of pages; let i = index">
+          <ion-item lines="none" detail="false" [routerLink]="[page.url]" class="centered-items" routerDirection="root"
+            routerLinkActive="selected">
+            <div class="icon-label">
+              <ion-icon slot="start" mode="ios" [name]="page.icon" size="large"></ion-icon>
+            </div>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="menu-content"></ion-router-outlet>
+  </ion-split-pane>
 </ion-app>

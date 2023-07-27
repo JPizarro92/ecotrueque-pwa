@@ -1,0 +1,9 @@
+<swiper-container [modules]="swiperModules"
+                  [slidesPerView]="1"
+                  [centeredSlides]="true"
+                  [autoplay]="true"
+                  [initialSlide]="1" >
+  <swiper-slide *ngFor="let image of images">
+    <img [src]="url_image+image.image" class="img-responsive">
+  </swiper-slide>
+</swiper-container>

@@ -1,0 +1,49 @@
+ion-split-pane {
+    --border: none;
+    --side-max-width: 90px;
+    --side-min-width: 90px;
+    
+    ion-menu {
+        
+        --background: var(--ion-color-primary);
+        --max-width: 100px;
+        --min-width: 100px;
+        
+        ion-list {
+            
+            ion-item {
+                width: 100%;
+                .isotipo {
+                    width: 80%;
+                    height: auto;
+                    max-width: 300px;
+                    padding-left: 10px;
+                }
+            }
+
+            ion-content{
+                --background: transparent;
+                
+            }
+        }
+
+        
+
+    }
+    ion-menu::part(container){
+        border-radius: 0 40px 40px 0;
+    }
+}
+
+.icon-label{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100px;
+}
+
+.centered-items {
+    
+    justify-content: center;
+  
+}

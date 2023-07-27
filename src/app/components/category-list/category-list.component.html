@@ -1,0 +1,15 @@
+<div class="bannerCategories" *ngIf="categories">
+  Categorías:
+  <div (ionChange)="selectCategory($event)">
+    <ion-segment mode="ios" [scrollable]="true" [value]="categoryID">
+      <ion-segment-button value="0">
+        <ion-icon name="earth-outline"></ion-icon>
+        <ion-label>Todo</ion-label>
+      </ion-segment-button>
+      <ion-segment-button *ngFor="let category of categories" [value]="category.id">
+        <ion-icon [name]="category.icon"></ion-icon>
+        <ion-label>{{category.name}}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+</div>

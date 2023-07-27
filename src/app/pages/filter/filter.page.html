@@ -1,0 +1,24 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Publicaciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding"> 
+  <div class="ion-padding">
+    <app-category-list [categories]="categories" (categorySelect)="readCategoryID($event)"></app-category-list>
+  </div>
+  <!-- Refresher -->
+  <ion-refresher slot="fixed" (ionRefresh)="reload($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <!-- Post -->
+  <div class="ion-no-padding">
+    <app-posts [posts]="posts" (categorySelect)="categorySelect($event)" ></app-posts>
+  </div>
+  <ion-infinite-scroll  [disabled]="!enable"
+                        threshold="150px" 
+                        (ionInfinite)="following($event)">
+                        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."/>
+  </ion-infinite-scroll>
+  <app-institutional-logos-footer></app-institutional-logos-footer>
+</ion-content>

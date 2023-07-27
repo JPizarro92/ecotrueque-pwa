@@ -1,0 +1,27 @@
+<div>
+  <ion-card>
+    <swiper-container
+      [modules]="swiperModules"
+      [initialSlide]="1"
+      [centeredSlides]="true"
+      [spaceBetween]="5"
+      [autoplay]="true"
+      effect="fade">
+      <swiper-slide
+        *ngFor="let image of post.images"
+        [style.background-image]="'url(' + url_image + image.img + ')'"
+      ></swiper-slide>
+    </swiper-container>
+
+    <ion-card-header (click)="seePost()">
+      <ion-item lines="none" mode="ios">
+        <ion-label>
+          <h5>Azuay, Cuenca</h5>
+        </ion-label>
+      </ion-item>
+      <ion-label>
+        <h2>{{ post.title }}</h2>  
+      </ion-label>
+    </ion-card-header>
+  </ion-card>
+</div>

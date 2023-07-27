@@ -1,0 +1,27 @@
+<ion-content [fullscreen]="true">
+  <div class="content-container">
+    <div align="center">
+      <img src="assets/icon/ups/logo-ecotrueque.png" height="200px">
+    </div>
+
+    <ion-list class="ion-margin">
+      <div class="ion-margin marginBottom" (ionChange)="segmentChange($event)">
+
+        <ion-segment mode="ios" [value]="segmentValue">
+          <ion-segment-button value="1">
+            <ion-label>Log In</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="2">
+            <ion-label>Sign Up</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+
+      </div>
+
+      <app-sign-in *ngIf="segmentValue == '1'"></app-sign-in>
+      <app-sign-up *ngIf="segmentValue == '2'"></app-sign-up>
+    </ion-list>
+    <app-institutional-logos-footer></app-institutional-logos-footer>
+  </div>
+
+</ion-content>

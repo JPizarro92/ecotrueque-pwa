@@ -1,0 +1,24 @@
+<div *ngIf="posts.length!=0" class="ion-padding">
+  <ion-item lines="none">
+    <ion-label>
+      <ion-icon slot="start" [name]="category.icon"></ion-icon>
+      {{category.name}}
+    </ion-label>
+    <ion-text>
+      <!--a href="" class="no-underline">Ver mas...</!--a--> 
+      Ver mas...
+    </ion-text>
+  </ion-item>
+  
+  <swiper-container [modules]="swiperModules"
+                    [slidesPerView]="2"
+                    [centeredSlides]="false"
+                    [breakpoints]="breakpoints"
+                    [space-between]="10"
+                    [scrollbar]="{draggable:true}">
+    <swiper-slide *ngFor="let post of posts" >
+      <app-post-home [post]="post"></app-post-home>
+    </swiper-slide>
+  </swiper-container>
+
+</div>

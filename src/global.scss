@@ -24,3 +24,37 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+@font-face {
+    font-family: 'Gill Sans Regular';
+    src: url('./assets/fonts/gill_sans/Gill-Sans.otf');
+}
+
+@font-face {
+    font-family: 'Gill Sans Bold';
+    src: url('./assets/fonts/gill_sans/Gill-Sans-Bold.otf');
+}
+
+@font-face {
+    font-family: 'Roboto Regular';
+    src: url('./assets/fonts/roboto/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto Bold';
+    src: url('./assets/fonts/roboto/Roboto-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Verdana Regular';
+    src: url('./assets/fonts/verdana/verdana.ttf');
+}
+
+@font-face {
+    font-family: 'Verdana Bold';
+    src: url('./assets/fonts/verdana/verdana-bold.ttf');
+}
+
+*{
+    font-family: 'Roboto Bold';
+}
