@@ -88,6 +88,7 @@ export class UsersService {
       this.http.put(`${URL}/users/${this.user?.id}`, userUpdated, { observe: 'response', headers })
         .subscribe({
           next: (resp: HttpResponse<User>) => {
+            this.user = resp.body;
             resolve(true)
           },
           error:(error)=>{

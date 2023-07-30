@@ -48,11 +48,6 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'posts',
-        loadChildren: () =>
-          import('../../pages/posts/posts.module').then((m) => m.PostsPageModule),
-      },
-      {
         path: 'exchange-view',
         loadChildren: () =>
           import('../../pages/exchange-view/exchange-view.module').then(
@@ -67,9 +62,21 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'my-posts',
+        loadChildren: () => import('../my-posts/my-posts.module').then( m => m.MyPostsPageModule)
+      },
+      {
+        path: 'not-found',
+        loadChildren: () => import('../not-found/not-found.module').then( m => m.NotFoundPageModule)
+      },
+      {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full',
+      },
+      {
+        path: '**',
+        redirectTo: 'not-found',
       },
     ],
   },

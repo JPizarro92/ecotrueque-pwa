@@ -32,7 +32,7 @@ export interface PostsResponse {
   
   export interface Image {
     id?: number;
-    image: string;
+    img: string;
     status: boolean
   }
   
@@ -89,6 +89,7 @@ export interface PostsResponse {
     proposed_post?: Post;
     post_user_id?: string;
     post_user?: User;
+    user?: User,
     post_shared_id?: number;
     post_shared?: Post;
   }

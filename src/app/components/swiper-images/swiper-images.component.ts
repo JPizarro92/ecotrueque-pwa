@@ -11,14 +11,15 @@ const URL = environment.url_assets
   styleUrls: ['./swiper-images.component.scss'],
 })
 export class SwiperImagesComponent  implements OnInit {
-
+  swiperModules = [IonicSlides]
   @Input() images: Image[] = []
   @Input() uid: string = ''
   url_image = ''
 
-  swiperModules = [IonicSlides];
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.url_image = URL + '/posts/' + this.uid + '/posts/'
+  }
 
 }

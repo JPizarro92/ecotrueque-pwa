@@ -10,11 +10,11 @@ import { IonicSlides } from '@ionic/angular';
 export class BannerNewsComponent implements OnInit {
   //@Input() images: Image[] = []
   images: Image[] = [
-    { image: 'assets/img/messages/eco1.jpg', status: true },
-    { image: 'assets/img/messages/eco2.png', status: true },
-    { image: 'assets/img/messages/eco3.jpg', status: true },
-    { image: 'assets/img/messages/eco4.jpg', status: true },
-    { image: 'assets/img/messages/eco5.jpg', status: true },
+    { img: 'assets/img/messages/eco1.jpg', status: true },
+    { img: 'assets/img/messages/eco2.png', status: true },
+    { img: 'assets/img/messages/eco3.jpg', status: true },
+    { img: 'assets/img/messages/eco4.jpg', status: true },
+    { img: 'assets/img/messages/eco5.jpg', status: true },
   ];
   swiperModules = [IonicSlides];
   breakpoints = {

@@ -1,0 +1,38 @@
+.container-arrows {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+}
+
+.item-exchange {
+    border-radius: 20px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    padding-top: 20px;
+}
+
+@media (min-width: 768px) {
+    div {
+        display: flex;
+        justify-content: center;
+    }
+    ion-list {
+        max-width: 50%;
+        width: 100%;
+    }
+    .container-arrows{
+        margin-top: 150px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        display: flex;
+        justify-content: center;
+    }
+
+}
+
+ion-item{
+    margin-left: -10px;
+}

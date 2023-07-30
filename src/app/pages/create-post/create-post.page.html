@@ -1,13 +1,108 @@
-<ion-header [translucent]="true">
+<ion-header class="ion-no-border" type="ios">
   <ion-toolbar>
-    <ion-title>create-post</ion-title>
+    <ion-buttons slot="start">
+      <ion-button color="primary" (click)="closeModal()">
+        Cerrar
+      </ion-button>
+    </ion-buttons>
+    
+    <ion-buttons slot="end">
+      <ion-button (click)="createPost()" color="primary">
+        <ion-icon slot="start" name="share-outline"></ion-icon>
+        Publicar
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
+<ion-content class="ion-padding">  
+  <ion-refresher slot="fixed" (ionRefresh)="reload($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-grid fixed class="container">
+    <ion-row>
+      <ion-col size="12">
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col size="12">
+              <ion-item lines="inset">
+                <ion-input label="Titulo:" labelPlacement="floating" type="text" [(ngModel)]="post.title" ></ion-input>  
+              </ion-item>
+            </ion-col>
+            <ion-col size="12" sizeMd="6" sizeLg="6">
+              <ion-item lines="inset">
+                <ion-select label="Categoría:" placeholder="Selecciona un valor" [(ngModel)]="selectedCategoryID" (ionChange)="selectCategory()" >
+                  <ion-select-option *ngFor="let category of categories" [value]="category.id">
+                    {{category.name}}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <ion-col size="12" sizeMd="6" sizeLg="6">
+              <ion-item lines="inset">
+                <ion-select label="Estado:" placeholder="Selecciona un valor" [(ngModel)]="selectedStatus" (ionChange)="selectStatus()" >
+                  <ion-select-option value="nuevo">NUEVO</ion-select-option>
+                  <ion-select-option value="usado">USADO</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <ion-col size="12">
+              <ion-item lines="inset">
+                <ion-textarea label="Descripción corta:" labelPlacement="floating" type="text" [(ngModel)]="post.short_description" ></ion-textarea>  
+              </ion-item>
+            </ion-col>
+            <ion-col size="12">
+              <ion-item lines="inset">
+                <ion-textarea label="Descripción larga:" labelPlacement="floating" type="text" [(ngModel)]="post.long_description" ></ion-textarea>
+              </ion-item>
+            </ion-col>
+            <ion-col size="12">
+              <ion-item lines="inset">
+                <ion-input label="Interes de cambio:" labelPlacement="floating" type="text" [(ngModel)]="post.exchange_rate" ></ion-input>  
+              </ion-item>
+            </ion-col>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">create-post</ion-title>
-    </ion-toolbar>
-  </ion-header>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+    <div class="ion-padding ion-align-items-start">
+      <h5>Agrega imagenes:</h5>
+    </div>
+    <ion-row>
+      <ion-col size="6">
+        <ion-button expand="full" shape="round" (click)="cameraFunction()">
+          <ion-icon slot="start" name="camera"></ion-icon>
+          Cámara
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button expand="full" shape="round" (click)="galleryFunction()">
+          <ion-icon slot="start" name="images"></ion-icon>
+          Galería
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+    <ion-button fill="clear" *ngIf="images.length != 0" size="small" (click)="deleteAllImages()">
+      <ion-icon slot="icon-only" name="trash" *ngIf="images.length != 0"></ion-icon>
+    </ion-button>
+  
+  <ion-list>
+    <ion-item *ngFor="let file of images; let i = index">
+      <ion-thumbnail slot="start">
+        <ion-img [src]="file.data"></ion-img>
+      </ion-thumbnail>
+      <ion-label class="ion-text-wrap"> 
+        {{file.name}}
+      </ion-label>
+      
+      <ion-button slot="end" fill="clear" (click)="deleteImage(file)">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <app-institutional-logos-footer></app-institutional-logos-footer>
+
 </ion-content>

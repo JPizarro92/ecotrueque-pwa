@@ -1,0 +1,9 @@
+<div>
+  <app-swiper-images [images]="post.images??[]" [uid]="post.user_id??''"></app-swiper-images>
+  <!--app-avatar-user [user_id]="post.user_id??''"></!--app-avatar-user-->
+  <ion-label>{{post.title}}</ion-label>
+  <p>
+    {{post.short_description}}
+  </p>
+  
+</div>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from '../../interfaces/index';
+import { Category, User } from '../../interfaces/index';
 import { CategoriesService } from '../../services/categories.service';
+import { AppComponent } from '../../app.component';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +11,8 @@ import { CategoriesService } from '../../services/categories.service';
 })
 export class HomePage implements OnInit {
 
+  user: User = {};
+  title: string = ""
   categories: Category[]=[]
   category: Category = {
     id: 0,
@@ -16,14 +20,21 @@ export class HomePage implements OnInit {
     icon: 'earth-outline'
   }
 
-  constructor(private categoryService: CategoriesService) { }
+  constructor(private categoryService: CategoriesService,
+              private usersService: UsersService) {}
+
+  ionViewDidEnter(){
+    const menu = document.querySelector('ion-menu');
+    menu?.setAttribute('disabled', 'false');
+  }
 
   async ngOnInit() {
-    const validar = await this.categoryService.readCategories()
+    const validar = await this.categoryService.readCategories();
     if(validar){
-      this.categories = this.categoryService.getCategories()
+      this.categories = this.categoryService.getCategories();
     }
-    
+    this.user = this.usersService.getUser();
+    this.title = "Inicio";
   }
 
   reload(event?:any){

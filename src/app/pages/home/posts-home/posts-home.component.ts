@@ -17,7 +17,7 @@ export class PostsHomeComponent  implements OnInit {
     200: {slidesPerView: 2},
     667: { slidesPerView: 3 },
     768: { slidesPerView: 4 },
-    1280: { slidesPerView: 5 },
+    1280: { slidesPerView: 6 },
   };
   
   @Input() category: Category = {}

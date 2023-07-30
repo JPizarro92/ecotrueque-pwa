@@ -1,3 +1,8 @@
-<p>
-  user-stars works!
-</p>
+<div *ngIf="star_int>0 || star_dec>0"> <!--* Creating star-->
+  <ion-icon class="star" *ngFor="let i of range(star_int)" slot="start" name="star"></ion-icon>
+  <ion-icon class="star" *ngIf="star_dec!=0" slot="start" name="star-half"></ion-icon>
+  <ion-icon *ngFor="let i of range(5-(star_int+1))" slot="start" name="star-outline"></ion-icon>
+</div>
+<div *ngIf="rating==0">
+  <ion-icon *ngFor="let i of range(5)" slot="start" name="star-outline"></ion-icon>
+</div>

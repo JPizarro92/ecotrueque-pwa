@@ -1,0 +1,15 @@
+<div>
+  
+  <ion-text color="primary">
+    <h6>{{post.title}}</h6>
+  </ion-text>  
+  <app-swiper-images [images]="post.images ?? []" [uid]="user.id ?? ''"></app-swiper-images>
+  <div>
+    <p style="font-size: small;">
+      {{post.short_description}}
+    </p>
+    
+  </div>
+  
+  
+</div>

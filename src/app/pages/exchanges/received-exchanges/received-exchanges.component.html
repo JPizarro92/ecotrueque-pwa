@@ -1,0 +1,47 @@
+<div class="container">
+  <ion-list>
+
+    <h4 style="color: cornflowerblue;">Recibidos</h4>
+    
+    <div *ngFor="let exchange of exchanges"> 
+      <ion-item *ngIf="exchange.status=='send'" lines="none" class="item-exchange">
+        <ion-grid>
+          <!-- ? Avatar - Usuario -->
+          <app-header-users [user_post_proposed]="exchange.user??{}" [user_post_shared]="exchange.post_user??{}"></app-header-users>
+          <ion-row>
+            <ion-col size="5">
+              <app-card-post [post]="exchange.proposed_post ?? {}" [user]="exchange.user?? {}"></app-card-post>
+            </ion-col>
+            <ion-col size="2"> <!-- ? Flechas de intercambio-->
+              <div class="container-arrows">
+                <ion-icon name="caret-back-outline"></ion-icon>
+                <ion-icon name="caret-forward-outline"></ion-icon>
+              </div>
+            </ion-col>
+            <ion-col size="5">
+              <app-card-post [post]="exchange.post_shared ?? {}" [user]="exchange.post_user ?? {}"></app-card-post>
+            </ion-col>
+          </ion-row>
+
+          <ion-row> <!-- ? Buttons -->
+            <ion-col size="12">
+              <ion-buttons>
+                <ion-button color="success" shape="round" fill="outline">
+                  <ion-icon name="repeat" slot="icon-only"></ion-icon>
+                  <ion-label>Aceptar</ion-label>
+                </ion-button>
+                
+                <ion-button color="danger" (click)="rejectButton(exchange)" shape="round" fill="outline">
+                  <ion-icon name="close-outline" slot="icon-only"></ion-icon>
+                  <ion-label>Rechazar</ion-label>
+                </ion-button>
+              </ion-buttons>
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
+      </ion-item>
+    </div>
+
+  </ion-list>
+</div>

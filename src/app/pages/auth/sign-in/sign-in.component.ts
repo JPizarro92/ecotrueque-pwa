@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { LoadingController, NavController } from '@ionic/angular';
 import { UserLogin } from '../../../interfaces/index';
 import { UiServiceService } from '../../../services/ui-service.service';
 import { UsersService } from '../../../services/users.service';
+import { AppComponent } from '../../../app.component';
 
 @Component({
   selector: 'app-sign-in',
@@ -15,7 +16,8 @@ export class SignInComponent  implements OnInit {
   form: any;
   type = true
   //isLoading: boolean = false
-
+  private loading: any;
+  
   user: UserLogin= {
     email: '',
     password: ''
@@ -23,7 +25,9 @@ export class SignInComponent  implements OnInit {
 
   constructor(private userService: UsersService,
               private navCtrl: NavController,
-              private uiService: UiServiceService) { }
+              private loadingCtrl: LoadingController,
+              private uiService: UiServiceService,
+              private appComponent: AppComponent) { }
 
   ngOnInit() {
     this.initForm()
@@ -40,21 +44,44 @@ export class SignInComponent  implements OnInit {
     this.type = !this.type
   }
 
-  async onSubmit(){
-    if(!this.form.valid){
-      this.form.markAllAsTouched();
-      return
-    }
-
-    const validate = await this.userService.login(this.form.value.email, this.form.value.password)
-
-    if (validate){
-      this.navCtrl.navigateRoot('/ecotrueque/home', {animated: true})
-    }else{
-      this.uiService.messageAlert('Error','Usuario y contraseña incorrectos.')
-    }
-
-
+  async onSubmit() {
+    this.loadingCtrl
+      .create({
+        message: 'Inicio de sesión....'
+      })
+      .then((overlay) => {
+        this.loading = overlay;
+        this.loading.present();
+  
+        if (!this.form.valid) {
+          this.form.markAllAsTouched();
+          throw new Error('Form is not valid');
+        }
+  
+        return this.userService.login(this.form.value.email, this.form.value.password);
+      })
+      .then((validate) => {
+        if (validate) {
+          this.appComponent.showMenu = true;
+          const menu = this.appComponent.menu
+          menu?.setAttribute('side','start');
+          
+          this.navCtrl.navigateRoot('/ecotrueque/home', { animated: true });
+        } else {
+          this.uiService.messageAlert('Error', 'Usuario y contraseña incorrectos.');
+        }
+      })
+      .catch((error) => {
+        // Handle any errors that occur during loading or login process
+        console.error(error);
+      })
+      .finally(() => {
+        // Ensure that the loading is dismissed regardless of success or error
+        if (this.loading) {
+          this.loading.dismiss();
+        }
+      });
   }
+  
 
 }

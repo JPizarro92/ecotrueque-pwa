@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Category, Post } from '../../interfaces/index';
+import { Category, Post, User } from '../../interfaces/index';
 import { CategoriesService } from '../../services/categories.service';
 import { PostsService } from '../../services/posts.service';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-filter',
@@ -9,21 +10,28 @@ import { PostsService } from '../../services/posts.service';
   styleUrls: ['./filter.page.scss'],
 })
 export class FilterPage implements OnInit {
+
+  title: string = "";
+  user: User = {}
   categoryID = 0;
   posts: Post[] = [];
   category: Category = {};
   categories: Category[] = [];
   enable = true;
   constructor(
-    private categoryService: CategoriesService,
-    private postsService: PostsService
+    private categoriesService: CategoriesService,
+    private postsService: PostsService,
+    private usersService: UsersService
   ) {}
 
   async ngOnInit() {
-    const validar = await this.categoryService.readCategories()
+    const validar = await this.categoriesService.readCategories()
     if(validar){
-      this.categories = this.categoryService.getCategories()
+      this.categories = this.categoriesService.getCategories()
     }
+    this.user = this.usersService.getUser();
+    this.title = "Filtros";
+
     this.following();
     this.postsService.newPost.subscribe((posts) => {
       this.posts.unshift(posts);

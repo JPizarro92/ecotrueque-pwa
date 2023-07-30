@@ -1,13 +1,60 @@
-<ion-header [translucent]="true">
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>exchanges</ion-title>
+    <ion-title>Trueques</ion-title>
   </ion-toolbar>
 </ion-header>
+<ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="reload($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="content-container">
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">Trueques</ion-title>
+      </ion-toolbar>
+    </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">exchanges</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <div class="" (ionChange)="segmentChange($event)">
+
+      <ion-segment mode="ios" value="default" class="screen-web">
+        <ion-segment-button value="1" layout="icon-start">
+          <ion-icon name="send-outline" size="small"></ion-icon>
+          <ion-label>Enviados</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="2" layout="icon-start">
+          <ion-icon name="archive-outline" size="small"></ion-icon>
+          <ion-label>Recibidos</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="3" layout="icon-start">
+          <ion-icon name="checkmark-done-circle-outline" size="small"></ion-icon>
+          <ion-label>Aceptados</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+
+      <ion-segment mode="ios" [value]="segmentValue" class="screen-mobile">
+        <ion-segment-button value="1">
+          <div class="mobileIcon">
+            <ion-icon name="send-outline" size="small"></ion-icon>
+          </div>
+          Enviados
+        </ion-segment-button>
+        <ion-segment-button value="2">
+          <div class="mobileIcon">
+            <ion-icon name="archive-outline" size="small"></ion-icon>
+          </div>
+          Recibidos
+        </ion-segment-button>
+        <ion-segment-button value="3">
+          <div class="mobileIcon">
+            <ion-icon name="checkmark-done-circle-outline" size="small"></ion-icon>
+          </div>
+          Aceptados
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+    <app-sent-exchanges [exchanges]="exchangesSend" *ngIf="segmentValue == '1'" class="ion-align-items-center"></app-sent-exchanges>
+    <app-received-exchanges [exchanges]="exchangesReceived" *ngIf="segmentValue == '2'"></app-received-exchanges>
+    <app-exchanges-accepted [exchanges_sent]="exchangesSend" [exchanges_proposed]="exchangesReceived" *ngIf="segmentValue == '3'"></app-exchanges-accepted>
+  </div>
+  <app-institutional-logos-footer></app-institutional-logos-footer>
 </ion-content>

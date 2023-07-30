@@ -17,6 +17,12 @@ const routes: Routes = [
     pathMatch: 'full',
     redirectTo: 'login'
   },
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: 'ecotrueque/home'
+  },
+  
 ];
 @NgModule({
   imports: [

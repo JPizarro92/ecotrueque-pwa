@@ -8,6 +8,7 @@ import { SwiperImagesComponent } from './swiper-images/swiper-images.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { PostsComponent } from './posts/posts.component';
 import { PostComponent } from './post/post.component';
+import { HeaderComponent } from './header/header.component';
 
 
 
@@ -18,6 +19,7 @@ import { PostComponent } from './post/post.component';
     CategoryListComponent,
     BannerNewsComponent,
     UserStarsComponent,
+    HeaderComponent,
     PostsComponent,
     PostComponent
   ],
@@ -32,6 +34,7 @@ import { PostComponent } from './post/post.component';
     CategoryListComponent,
     BannerNewsComponent,
     UserStarsComponent,
+    HeaderComponent,
     PostsComponent
   ]
 })

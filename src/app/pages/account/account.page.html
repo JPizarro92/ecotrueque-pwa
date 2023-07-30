@@ -1,13 +1,139 @@
-<ion-header [translucent]="true">
+<ion-header collapse="fade">
   <ion-toolbar>
-    <ion-title>account</ion-title>
+    <ion-title>Tu Cuenta</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="primary" (click)="closeModal()">
+        Cerrar
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
+<ion-content class="ion-padding">
+  <ion-refresher slot="fixed">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-card> <!-- Card for user profile summary -->
+    <ion-item lines="full">
+      <!-- edit and cancel button-->
+      <ion-button *ngIf="!enabledEditMode" fill="clear" expand="block" (click)="toggleEditMode()" #editButton>
+        <ion-icon slot="start" name="create-outline" size="small" [hidden]="enabledEditMode"></ion-icon>
+        <ion-label [hidden]="enabledEditMode">Editar</ion-label>
+      </ion-button>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">account</ion-title>
-    </ion-toolbar>
-  </ion-header>
+      <ion-button *ngIf="enabledEditMode" fill="clear" expand="block" (click)="toggleEditMode()" #editButton>
+        <ion-icon slot="start" name="close" size="small" [hidden]="!enabledEditMode" class="cancelButton"
+          #cancelButton></ion-icon>
+        <ion-label [hidden]="!enabledEditMode" class="cancelButton" #cancelButton>Cancelar</ion-label>
+      </ion-button>
+
+    </ion-item>
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="12" size-md="4"> <!--?  -->
+          <ion-fab> <!--? Button for change avatar-->
+            <ion-fab-button size="small" (click)="takePhoto()" >
+              <ion-icon name="aperture-outline" size="default"></ion-icon>
+            </ion-fab-button>  
+          </ion-fab>
+
+          <img [src]="url_avatar + userLogin.avatar" class="rounded-circle centered-image" style="width: 175px; height: 175px;">
+
+
+          <ion-card-header> <!--? Space for user profile summary -->
+            <ion-card-subtitle>
+              Azuay, Cuenca
+            </ion-card-subtitle>
+            <ion-card-title (avatarSelect)="changeNameUpdated($event)" > {{fullName}} </ion-card-title>
+          </ion-card-header>
+          
+          <ion-card-content> <!--? Space for content stars-->
+            <app-user-stars [rating]="rating"></app-user-stars>  
+          </ion-card-content>
+        </ion-col>
+        <ion-col size="12" size-md="8"> <!--? form data -->
+          <ion-text color="primary">
+            <h5>Información</h5>
+          </ion-text>
+          <form (ngSubmit)="updateUser(fUpdated)" #fUpdated="ngForm">
+            <ion-grid>
+              <ion-row>
+                <ion-col size="12">
+                  <ion-item lines="inset">
+                    <ion-input  label="Nombre:" labelPlacement="floating"
+                                [(ngModel)]="user.name" [disabled]="!enabledEditMode"
+                                type="text"  name="name"/>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="12">
+                  <ion-item>
+                    <ion-input  label="Apellido:" labelPlacement="floating"
+                                [(ngModel)]="user.surname" [disabled]="!enabledEditMode"
+                                type="text"  name="surname"/>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12">
+                  <ion-item>
+                    <ion-input  label="Email:" labelPlacement="floating"
+                                [(ngModel)]="user.email" [disabled]="!enabledEditMode"
+                                type="email"  name="email"/>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="12">
+                  <ion-item>
+                    <ion-input  label="Celular:" labelPlacement="floating"
+                                type="text" name="phone"
+                                [(ngModel)]="user.phone"
+                                [disabled]="!enabledEditMode"
+                                placeholder="+593838945785"
+                                [maxlength]="13"/>
+                    <ion-icon name="information-circle" slot="end"></ion-icon>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12">
+                  <ion-item>
+                    <ion-item [disabled]="!enabledEditMode" lines="none">
+                      <div>
+                        <ion-label>Cumpleaños:</ion-label>
+                        <ion-icon slot="start" name="calendar-number-outline" size="small" />
+                      </div>
+                      <ion-datetime-button slot="end" datetime="datetime"/>
+                      
+                      <ion-modal [keepContentsMounted]="true">
+                        <ng-template>
+                          <ion-datetime id="datetime" presentation="date" [value]="user.birth_date" [showDefaultButtons]="true" doneText="Aceptar" cancelText="Cancelar" >
+                            <span slot="title">Selecciona tu fecha de nacimiento:</span>
+                          </ion-datetime>
+                        </ng-template>
+                      </ion-modal>
+                    </ion-item>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="12">
+                  <ion-item>
+                    <ion-item [disabled]="!enabledEditMode" lines="none">
+                      <!--ion-input  label="Ubicación:" labelPlacement="floating"
+                                [(ngModel)]="user.location" [disabled]="!enabledEditMode"
+                                type="text"  name="location"/-->
+                      <ion-spinner name="lines-small"/>
+                      <ion-toggle slot="end" [(ngModel)]="user.location" [disabled]="!enabledEditMode"
+                                  name="location" (ionchange)="getGeolocation()" ></ion-toggle>
+                      <ion-icon slot="end" name="pin" size="small"/>
+                    </ion-item>
+                    
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            <ion-button slot="end" fill="outline" type="submit" [disabled]="!enabledEditMode">Actualizar</ion-button>
+          </form>
+        </ion-col> 
+      </ion-row>
+    </ion-grid>
+    
+  </ion-card>
+  <app-institutional-logos-footer></app-institutional-logos-footer>
 </ion-content>

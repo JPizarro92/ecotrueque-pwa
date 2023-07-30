@@ -1,0 +1,86 @@
+@media(min-width: 768px) {
+    .container {
+        width: 50%;
+    }
+}
+
+ion-card {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+ion-input,
+ion-text,
+ion-label,
+ion-toggle {
+    font-size: 0.9rem;
+    font-family: 'Gill Sans Regular';
+}
+
+
+
+img {
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+.cancelButton {
+    color: #ff0000;
+    font-size: 13px;
+}
+
+.buttonAvatar {
+    border-radius: 50%;
+}
+
+.container-resumen {
+    padding: 10px;
+}
+
+.buttonText {
+    font-size: 0.9rem;
+}
+
+p {
+    ion-icon {
+        font-size: 1.8rem;
+        margin: 1vh 1.5vh;
+    }
+}
+
+div.card {
+    background-color: #f4f5f8;
+}
+
+@media(max-width: 992px) {
+    ion-item {
+        margin-left: -10px;
+    }
+}
+
+@media(max-width: 768px) {
+    ion-item {
+        margin-left: 0%;
+    }
+}
+
+ion-item {
+    margin-left: -10px;
+
+    ion-label {
+        font-family: 'Gill Sans Regular' !important;
+        font-size: 0.8rem !important;
+    }
+}
+
+ion-datetime-button {
+    padding-bottom: 15px;
+    margin-top: 10px;
+    margin-left: 0%;
+}
+
+.centered-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

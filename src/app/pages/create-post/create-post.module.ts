@@ -7,12 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { CreatePostPageRoutingModule } from './create-post-routing.module';
 
 import { CreatePostPage } from './create-post.page';
+import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    ComponentsModule,
     CreatePostPageRoutingModule
   ],
   declarations: [CreatePostPage]

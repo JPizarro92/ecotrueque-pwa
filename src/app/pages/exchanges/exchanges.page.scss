@@ -1,0 +1,30 @@
+
+@media(min-width: 768px) {
+    .mobileIcon {
+        display: none;
+    }
+}
+
+ion-segment{
+    ion-segment-button{
+        ion-icon{
+            margin-right: 8px;
+        }
+        ion-label{
+            font-size: 12px;
+        }
+    }
+}
+
+@media(max-width: 768px) {
+    .screen-web{
+        display: none;
+    }
+    
+}
+
+@media(min-width: 768px){
+    .screen-mobile{
+        display: none;
+    }
+}

@@ -6,20 +6,41 @@
       <ion-list>
         <ion-item lines="none">
           <img src="assets/icon/ups/isotipo.png" class="isotipo" />
+          <ion-label>
+            <h2>ECOTRUEQUE UPS</h2>
+          </ion-label>
         </ion-item>
       </ion-list>
 
       <ion-content>
-        <ion-menu-toggle class="menu-items" [autoHide]="false" *ngFor="let page of pages; let i = index">
-          <ion-item lines="none" detail="false" [routerLink]="[page.url]" class="centered-items" routerDirection="root"
-            routerLinkActive="selected">
-            <div class="icon-label">
-              <ion-icon slot="start" mode="ios" [name]="page.icon" size="large"></ion-icon>
-            </div>
+
+        <ion-list class="menu-items" [autoHide]="false" *ngFor="let page of pages; let i = index">
+          <ion-item [routerLink]="[page.url]"
+                    lines="none" detail="false"
+                    (click)="onItemClick(i)"
+                    routerDirection="root"
+                    [class.active]="selectedItem === i">
+            <ion-icon slot="start" mode="ios" [name]="page.icon"></ion-icon>
+            {{page.title}}
           </ion-item>
-        </ion-menu-toggle>
+        </ion-list>
+        <div class="action-button">
+          <ion-button (click)="createPost()">
+            <ion-icon slot="start" name="add"></ion-icon>
+            Publicar
+          </ion-button>
+        </div>
       </ion-content>
+      <div class="action-button">
+        <ion-button >
+          <ion-icon name="log-out-outline"></ion-icon>
+          Cerrar sesión
+        </ion-button>
+      </div>
     </ion-menu>
+
+    
+
     <ion-router-outlet id="menu-content"></ion-router-outlet>
   </ion-split-pane>
 </ion-app>

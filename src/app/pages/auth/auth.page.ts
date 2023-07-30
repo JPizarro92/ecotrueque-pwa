@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from '../../app.component';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-auth',
@@ -8,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 export class AuthPage implements OnInit {
 
   segmentValue = '1'
-  constructor() { }
+  constructor(private menuCtrl: MenuController) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    //await this.menuCtrl.close();
+  }
+
+
+  ionViewDidEnter(){
+    const menu = document.querySelector('ion-menu');
+    menu?.setAttribute('disabled', 'true');
   }
 
   segmentChange(event: any){

@@ -1,38 +1,40 @@
 ion-split-pane {
     --border: none;
-    --side-max-width: 90px;
-    --side-min-width: 90px;
+    --side-max-width: 250px;
+    --side-min-width: 250px;
     
     ion-menu {
         
-        --background: var(--ion-color-primary);
-        --max-width: 100px;
-        --min-width: 100px;
+        //--background: var(--ion-color-primary);
+        //--max-width: 100%;
+        //--min-width: 100%;
         
         ion-list {
             
             ion-item {
-                width: 100%;
+                //width: 100%;
                 .isotipo {
                     width: 80%;
                     height: auto;
-                    max-width: 300px;
+                    max-width: 60px;
+                    //padding-top: 5px;
                     padding-left: 10px;
+                    padding-right: 10px;
                 }
             }
 
-            ion-content{
-                --background: transparent;
+            //ion-content{
+            //    --background: transparent;
                 
-            }
+            //}
         }
 
         
 
     }
-    ion-menu::part(container){
-        border-radius: 0 40px 40px 0;
-    }
+    //ion-menu::part(container){
+    //    border-radius: 0 40px 40px 0;
+    //}
 }
 
 .icon-label{
@@ -46,4 +48,43 @@ ion-split-pane {
     
     justify-content: center;
   
+}
+
+.action-button{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    ion-button {
+        text-transform: capitalize;
+        font-weight: 300;
+        --background: #628cff;
+        --border-radius: 10px;
+        --box-shadow: none;
+    }
+    ion-icon{
+        margin-right: 1px;
+    }
+}
+
+.menu-items{
+    margin: 0px;
+    ion-icon{
+        margin-right: 20px;
+        color: #86979f;
+    }
+
+    ion-item {
+        padding-left: 20px;
+        margin-bottom: 10px;
+    }
+
+    .active{
+        border-left: 5px solid;
+        color: #628cff;
+        padding-left: 15px;
+
+        ion-icon {
+            color: #628cff;
+        }
+    }
 }

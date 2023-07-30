@@ -1,0 +1,18 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Mis publicaciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="reload($event)" pullFactor="0.8" pullMin="60" pullMax="120">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+
+  <app-posts [posts]="posts_ows"></app-posts>
+
+  <ion-infinite-scroll [disabled]="!enable" threshold="150px" (ionInfinite)="followings($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..." />
+  </ion-infinite-scroll>
+  <app-institutional-logos-footer></app-institutional-logos-footer>
+</ion-content>

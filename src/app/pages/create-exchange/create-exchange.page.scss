@@ -1,0 +1,47 @@
+.image-slide {
+    width: 100%;
+    height: 250px;
+
+    background-color: #ffff;
+
+    /* Full height */
+    // height: 100%; 
+
+    /* Imagen centrada y colocada de forma elegante */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+swiper-container {
+    width: 100%;
+
+    swiper-slide {
+        width: 100%;
+        height: 250px;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .topRight {
+        align-items: initial;
+        justify-content: flex-end;
+    }
+}
+
+ion-thumbnail {
+    --size: 140px;
+    --border-radius: 14px;
+}
+
+.full-width-card {
+    width: 100%;
+}
+
+.container-arrows {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+}
